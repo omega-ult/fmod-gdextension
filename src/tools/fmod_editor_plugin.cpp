@@ -87,6 +87,14 @@ void FmodEditorPlugin::_ready() {
     );
 
     add_setting(
+      vformat("%s/%s/%s", FMOD_SETTINGS_BASE_PATH, FmodGeneralSettings::INITIALIZE_BASE_PATH, FmodGeneralSettings::OUTPUT_TYPE_OPTION),
+      FmodGeneralSettings::DEFAULT_OUTPUT_TYPE,
+      Variant::Type::INT,
+      PROPERTY_HINT_ENUM,
+      "AUTODETECT=-1,UNKNOWN=0,NOSOUND=1,WAVWRITER=2,NOSOUND_NRT=3,WAVWRITER_NRT=4,DSOUND=5,WINMM=6,WASAPI=7,ASIO=8,PULSEAUDIO=9,ALSA=10,COREAUDIO=11,AUDIOTRACK=12,OPENSL=13,AAUDIO=14,AUDIOUNIT=15,SDL2=16,XAUDIO2=17"
+    );
+
+    add_setting(
       vformat("%s/%s/%s", FMOD_SETTINGS_BASE_PATH, FmodDspSettings::DSP_SETTINGS_BASE_PATH, FmodDspSettings::DSP_BUFFER_SIZE_OPTION),
       FmodDspSettings::DEFAULT_DSP_BUFFER_SIZE,
       Variant::Type::INT

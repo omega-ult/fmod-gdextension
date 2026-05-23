@@ -54,6 +54,14 @@ bool FmodGeneralSettings::get_should_load_by_name() const {
     return _should_load_by_name;
 }
 
+void FmodGeneralSettings::set_output_type(const int p_output_type) {
+    _output_type = p_output_type;
+}
+
+int FmodGeneralSettings::get_output_type() const {
+    return _output_type;
+}
+
 Ref<FmodGeneralSettings> FmodGeneralSettings::get_from_project_settings() {
     Ref<FmodGeneralSettings> settings;
     settings.instantiate();
@@ -77,6 +85,9 @@ Ref<FmodGeneralSettings> FmodGeneralSettings::get_from_project_settings() {
 
     String should_load_by_name_setting_path = vformat("%s/%s/%s", FMOD_SETTINGS_BASE_PATH, INITIALIZE_BASE_PATH, SHOULD_LOAD_BY_NAME);
     settings->set_should_load_by_name(project_settings->get_setting(should_load_by_name_setting_path, DEFAULT_SHOULD_LOAD_BY_NAME));
+
+    String output_type_setting_path = vformat("%s/%s/%s", FMOD_SETTINGS_BASE_PATH, INITIALIZE_BASE_PATH, OUTPUT_TYPE_OPTION);
+    settings->set_output_type(project_settings->get_setting(output_type_setting_path, DEFAULT_OUTPUT_TYPE));
 
     return settings;
 }
@@ -170,5 +181,20 @@ void FmodGeneralSettings::_bind_methods() {
       ),
       "set_should_load_by_name",
       "get_should_load_by_name"
+    );
+
+    ClassDB::bind_method(D_METHOD("set_output_type", "p_output_type"), &FmodGeneralSettings::set_output_type);
+    ClassDB::bind_method(D_METHOD("get_output_type"), &FmodGeneralSettings::get_output_type);
+
+    ADD_PROPERTY(
+      PropertyInfo(
+        Variant::INT,
+        "output_type",
+        PROPERTY_HINT_ENUM,
+        "AUTODETECT=-1,UNKNOWN=0,NOSOUND=1,WAVWRITER=2,NOSOUND_NRT=3,WAVWRITER_NRT=4,DSOUND=5,WINMM=6,WASAPI=7,ASIO=8,PULSEAUDIO=9,ALSA=10,COREAUDIO=11,AUDIOTRACK=12,OPENSL=13,AAUDIO=14,AUDIOUNIT=15,SDL2=16,XAUDIO2=17",
+        PROPERTY_USAGE_DEFAULT
+      ),
+      "set_output_type",
+      "get_output_type"
     );
 }

@@ -27,6 +27,9 @@ namespace godot {
         void set_should_load_by_name(const bool p_should_load_by_name);
         bool get_should_load_by_name() const;
 
+        void set_output_type(const int p_output_type);
+        int get_output_type() const;
+
         static Ref<FmodGeneralSettings> get_from_project_settings();
 
         static constexpr const char* INITIALIZE_BASE_PATH = "General";
@@ -36,6 +39,7 @@ namespace godot {
         static constexpr const char* DEFAULT_LISTENER_COUNT_OPTION = "default_listener_count";
         static constexpr const char* BANKS_PATH_OPTION = "banks_path";
         static constexpr const char* SHOULD_LOAD_BY_NAME = "should_load_by_name";
+        static constexpr const char* OUTPUT_TYPE_OPTION = "output_type";
 
         static constexpr const int DEFAULT_CHANNEL_COUNT = 1024;
         static constexpr const bool DEFAULT_IS_LIVEUPDATE = true;
@@ -43,6 +47,7 @@ namespace godot {
         static constexpr const int DEFAULT_DEFAULT_LISTENER_COUNT = 1;
         static constexpr const char* DEFAULT_BANKS_PATH = "res://";
         static constexpr const bool DEFAULT_SHOULD_LOAD_BY_NAME = false;
+        static constexpr const int DEFAULT_OUTPUT_TYPE = -1; // AUTODETECT
 
     private:
         int _channel_count;
@@ -51,6 +56,7 @@ namespace godot {
         bool _is_memory_tracking_enabled;
         String _banks_path;
         bool _should_load_by_name;
+        int _output_type;
 
     protected:
         static void _bind_methods();
