@@ -186,7 +186,7 @@ void FmodServer::init(const Ref<FmodGeneralSettings>& p_settings) {
     advancedSettings.randomSeed = static_cast<unsigned int>(std::time(nullptr));// Use time as a seed
     ERROR_CHECK(coreSystem->setAdvancedSettings(&advancedSettings));
 
-    FMOD_STUDIO_INITFLAGS studio_init_flags = FMOD_STUDIO_INIT_NORMAL;
+    FMOD_STUDIO_INITFLAGS studio_init_flags = FMOD_STUDIO_INIT_NORMAL | FMOD_STUDIO_INIT_DEFERRED_CALLBACKS;
 
     if (
 #ifdef TOOLS_ENABLED
