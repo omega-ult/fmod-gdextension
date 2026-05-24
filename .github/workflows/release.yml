@@ -140,6 +140,7 @@ jobs:
         with:
           lfs: true
           submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Android dependencies
         if: ${{ matrix.platform == 'android' }}
@@ -173,6 +174,7 @@ jobs:
         with:
           lfs: true
           submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create android plugin
         uses: ./.github/actions/create-android-plugin
